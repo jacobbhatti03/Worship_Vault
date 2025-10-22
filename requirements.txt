@@ -1,4 +1,7 @@
+# WorshipVault Requirements
 streamlit==1.38.0
 pillow>=11.0.0
-
-
+firebase-admin==6.5.0
+google-cloud-storage>=2.16.0
+setuptools>=68.0.0
+requests>=2.31.0
