@@ -1,8 +1,8 @@
-# WorshipVault Requirements (Python 3.13 compatible)
-streamlit==1.39.0
+# WorshipVault Requirements (Stable for Streamlit Cloud)
+streamlit==1.40.0
 pillow==11.0.0
 firebase-admin==6.5.0
 google-cloud-storage==2.18.2
 requests==2.32.3
-setuptools>=69.0.0
 protobuf==4.25.3
+setuptools>=69.0.0
