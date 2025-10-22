@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "worshipvault-a917a",
+  "private_key_id": "8f9e444c5fd49db702d9397aab6f0a21294874bf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCz+UF2ITMZjhbd\ntTAW4/bGTS6PWmVlxQAza7OHqeA5HuycocR42iNrnjrD8CGmIQjkANzF28uFyL7X\njFkWo6oHmR0JqGguLWcYqSPqybI5P2ZjMr8hjiAy155+YYbMPmoHN0xqmN7ThT7H\n45DW9+iuF2+VgqaRFD5dtOTSvR99lnB9OFsxVq87riS0JIr5C15UmOebPwtL5Rjn\nY4RfJYLlTATOJbw4JoYRXRndywxGTahohPA5B67EdlTgh7+bAlNbUrHc+MNTQy92\nqe9F7EuMzQHVq6WG5DWOoQvfBdyHsUkFR5voFMAZ9gPdkwRcaiz/HSEXTvVa9ILB\nhj4sxHhnAgMBAAECggEAEVu8HZmsJQ3YVL/yCHMqTQwKrpboar1qfIspwK74ymma\nJq1PltxrSCj1wAo8JJrREbSnlonRgnDPP1jxCsb0UlFJRLIygims5OsDZNTZVL4x\nsOWnG6RqpJy5U7UyXCa08Uc7Hpjp/PrACGWBhcpZbdki0QfN6vZJ4Z3d6BmHnQQp\nEdF1oZ0jEzxISmnb4d29s8vvLph19OzisyYmzPI82dMCsJ+NenfFeMEPdAo3AWJX\nu2PIOG07/9XdEMu0XYK5bjd1cxgFn6Bn5iNrco2JchX0tnypO82pUKBnTNL3emQI\n/33bvdh/cna2CMPvZh75UW2RuLZHgq4WTEd/tUKEqQKBgQDjZ6BeQHBHbBZTF27x\n/tgGoq/zNQnNcZJFCYThGNT8gnt8qFvaixN/6igNtRYDmNBM+jSCPnjKnRASlSQ+\n4+WTPTKD/zfqCKoy4OjFMu8BlK7wLmaam/ojUqc/UArQgBPxQKj/G7saW8jMOYBg\nUto0q+rjcQiFyILo/OSdiJH82wKBgQDKmsbJqkcNCRakq2efjKnc4J8AsJSOWd07\nI9wMPxqgtVvpZxrq8yEKGdIZCK9nDwo2D3FKc6zNrHJ+c18U76/jmRaDYTJsCW6a\nOqhGD4wsN5CHpviXEa1RCboOHmFMC68wBCt2NrvZDs45kMvMvMzIenH7TJu4OwVO\nBLXgwzYCZQKBgQDDKatLWHhEA7KBK0pPK8zQnQzuaGV6SO8kis/cs4gPEhjS2lbC\nj7tze01WvkQfYCXc+prX8K+QDA3ANPk/dC0SGWJiQEYHd9pCAh4jJ9xRef5NKTVr\nmVOqvwPEZXhyiokS8tBW6MDCFWWWR/8yK8kTjTvwaJDM6FHZjTjTLmNEIwKBgQCf\nlkba9ps8s1n4n2LiFASAjRXxjyWU80gFm3tq0hIBYJljQem8A4KU2D3bpjGzde9P\nId7VDESjRSByZiIQ9bOQDTfkiJ0U6GEMbwO5G+oHskTP9T9+j1f7qzO4h0mQguud\nYMtzNC3HDZh3U4yUWmrbx0cc8Pz/os3M5Hz27A0Q2QKBgQCk0v4zWCiBlKvhsb1W\n4gbUZuGAsaZIQznOj8Rp30z0caibde1VEAb643diDpwsVVfP+T9czm29k8wm5xLP\nR+HX0wKvAyuhlsjvsyLWToka5oI5k2Lzl+rB5cyHFeO8kZGwfv1Q4NB3/VKTOAjq\nhZdL5q4hxiHPO+10dWUhmij/9Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@worshipvault-a917a.iam.gserviceaccount.com",
+  "client_id": "102711921551760861403",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40worshipvault-a917a.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
