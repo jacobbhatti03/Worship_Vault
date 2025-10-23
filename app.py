@@ -134,5 +134,15 @@ except Exception as e:
     st.error(f"❌ Failed to load files: {e}")
 
 st.caption("Your uploaded files will remain in the cloud and be available anytime.")
+from firebase_admin import storage
+
+if not firebase_admin._apps:
+    firebase_admin.initialize_app(cred, {
+        'storageBucket': f"{firebase_config['project_id']}.appspot.com"
+    })
+
+# ✅ Create Firestore & Storage clients
+db = firestore.client()
+bucket = storage.bucket()
 
 
