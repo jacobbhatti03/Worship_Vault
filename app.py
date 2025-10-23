@@ -10,6 +10,20 @@ if not firebase_admin._apps:
     firebase_admin.initialize_app(cred, {
         'storageBucket': 'worshipvault.appspot.com'
     })
+try:
+    # Test Firestore
+    db = firestore.client()
+    test_doc = db.collection("connection_test").document("test")
+    test_doc.set({"status": "connected"})
+    print("✅ Firestore connection successful")
+
+    # Test Storage
+    bucket = storage.bucket()
+    print(f"✅ Storage bucket found: {bucket.name}")
+
+except Exception as e:
+    print("❌ Firebase connection failed:", e)
+
 
 db = firestore.client()
 bucket = storage.bucket()
@@ -59,3 +73,4 @@ for file in files:
     """, unsafe_allow_html=True)
 
 st.caption("Your uploaded files will remain in the cloud and be available anytime.")
+
