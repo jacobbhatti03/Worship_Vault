@@ -3,32 +3,43 @@ import firebase_admin
 from firebase_admin import credentials, storage, firestore
 import tempfile
 import os
+import json
 
-# Initialize Firebase
+# -------------------------------
+# 🔥 Firebase Initialization
+# -------------------------------
 if not firebase_admin._apps:
-    cred = credentials.Certificate("firebase_config.json")
-    firebase_admin.initialize_app(cred, {
-        'storageBucket': 'worshipvault.appspot.com'
-    })
-try:
-    # Test Firestore
-    db = firestore.client()
-    test_doc = db.collection("connection_test").document("test")
-    test_doc.set({"status": "connected"})
-    print("✅ Firestore connection successful")
+    try:
+        # ✅ Try to load from Streamlit Cloud secrets (recommended for deployment)
+        if "FIREBASE_CONFIG" in st.secrets:
+            firebase_config = json.loads(st.secrets["FIREBASE_CONFIG"])
+            cred = credentials.Certificate(firebase_config)
+        # ✅ Fallback for local testing
+        elif os.path.exists("firebase_config.json"):
+            cred = credentials.Certificate("firebase_config.json")
+        else:
+            st.error("❌ Firebase credentials not found. Please add them via Streamlit Secrets or firebase_config.json.")
+            st.stop()
 
-    # Test Storage
-    bucket = storage.bucket()
-    print(f"✅ Storage bucket found: {bucket.name}")
+        firebase_admin.initialize_app(cred, {
+            'storageBucket': 'worshipvault.appspot.com'
+        })
 
-except Exception as e:
-    print("❌ Firebase connection failed:", e)
+        db = firestore.client()
+        bucket = storage.bucket()
 
+        # ✅ Connection test
+        test_doc = db.collection("connection_test").document("test")
+        test_doc.set({"status": "connected"})
+        print("✅ Firebase connected successfully")
+    except Exception as e:
+        st.error(f"❌ Firebase initialization failed: {e}")
+        print("❌ Firebase initialization failed:", e)
+        st.stop()
 
-db = firestore.client()
-bucket = storage.bucket()
-
-# Streamlit UI setup
+# -------------------------------
+# 🎨 Streamlit UI Setup
+# -------------------------------
 st.set_page_config(page_title="WorshipVault", page_icon="💿", layout="wide")
 st.markdown(
     """
@@ -38,7 +49,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Upload Section
+# -------------------------------
+# 📤 Upload Section
+# -------------------------------
 st.subheader("📤 Upload Media Files")
 uploaded_file = st.file_uploader("Choose an image or PDF", type=["jpg", "jpeg", "png", "pdf"])
 
@@ -47,30 +60,40 @@ if uploaded_file:
         tmp.write(uploaded_file.getbuffer())
         tmp_path = tmp.name
 
-    # Upload to Firebase
-    blob = bucket.blob(f"uploads/{uploaded_file.name}")
-    blob.upload_from_filename(tmp_path)
-    blob.make_public()
+    try:
+        # Upload to Firebase Storage
+        blob = bucket.blob(f"uploads/{uploaded_file.name}")
+        blob.upload_from_filename(tmp_path)
+        blob.make_public()
 
-    # Save metadata to Firestore
-    db.collection("uploads").add({
-        "filename": uploaded_file.name,
-        "url": blob.public_url
-    })
+        # Save metadata to Firestore
+        db.collection("uploads").add({
+            "filename": uploaded_file.name,
+            "url": blob.public_url
+        })
 
-    st.success(f"✅ {uploaded_file.name} uploaded successfully!")
+        st.success(f"✅ {uploaded_file.name} uploaded successfully!")
+        st.markdown(f"[📄 View File]({blob.public_url})", unsafe_allow_html=True)
 
-# Display Stored Files
+    except Exception as e:
+        st.error(f"❌ Upload failed: {e}")
+        print("❌ Upload failed:", e)
+
+# -------------------------------
+# 📁 Display Stored Files
+# -------------------------------
 st.subheader("📁 Stored Files")
-files = db.collection("uploads").stream()
-for file in files:
-    data = file.to_dict()
-    st.markdown(f"""
-        <div style='padding:10px; border-radius:10px; background-color:#1e1e1e; margin-bottom:10px;'>
-        📄 <b>{data['filename']}</b><br>
-        <a href='{data['url']}' target='_blank' style='color:#4FC3F7;'>Download</a>
-        </div>
-    """, unsafe_allow_html=True)
+try:
+    files = db.collection("uploads").stream()
+    for file in files:
+        data = file.to_dict()
+        st.markdown(f"""
+            <div style='padding:10px; border-radius:10px; background-color:#1e1e1e; margin-bottom:10px;'>
+            📄 <b>{data['filename']}</b><br>
+            <a href='{data['url']}' target='_blank' style='color:#4FC3F7;'>Download</a>
+            </div>
+        """, unsafe_allow_html=True)
+except Exception as e:
+    st.error(f"❌ Failed to load files: {e}")
 
 st.caption("Your uploaded files will remain in the cloud and be available anytime.")
-
