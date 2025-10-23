@@ -35,7 +35,7 @@ except Exception as e:
     db = None
 
 try:
-    # your load files logic
+    pass # your load files logic
 except Exception as e:
     import traceback
     st.error(f"❌ Failed to load files: {e}")
@@ -134,3 +134,4 @@ except Exception as e:
     st.error(f"❌ Failed to load files: {e}")
 
 st.caption("Your uploaded files will remain in the cloud and be available anytime.")
+
