@@ -4,6 +4,7 @@ from firebase_admin import credentials, storage, firestore
 import tempfile
 import os
 import json
+import traceback
 
 # --- FIREBASE INITIALIZATION ---
 try:
@@ -29,9 +30,13 @@ try:
     # ✅ Create the Firestore client
     db = firestore.client()
 
+try:
+    # your load files logic
 except Exception as e:
-    st.error(f"❌ Firebase initialization failed: {e}")
-    db = None
+    import traceback
+    st.error(f"❌ Failed to load files: {e}")
+    st.code(traceback.format_exc())  # ← shows the exact file + line number
+
 
 # -------------------------------
 # 🔥 Firebase Initialization
@@ -125,4 +130,3 @@ except Exception as e:
     st.error(f"❌ Failed to load files: {e}")
 
 st.caption("Your uploaded files will remain in the cloud and be available anytime.")
-
