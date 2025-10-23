@@ -104,7 +104,7 @@ if uploaded_file:
         blob.make_public()
 
         # Save metadata to Firestore
-        db.collection("uploads").add({
+        db.collection("files").add({
             "filename": uploaded_file.name,
             "url": blob.public_url
         })
@@ -134,4 +134,5 @@ except Exception as e:
     st.error(f"❌ Failed to load files: {e}")
 
 st.caption("Your uploaded files will remain in the cloud and be available anytime.")
+
 
