@@ -30,6 +30,10 @@ try:
     # ✅ Create the Firestore client
     db = firestore.client()
 
+except Exception as e:
+    st.error(f"❌ Firebase initialization failed: {e}")
+    db = None
+
 try:
     # your load files logic
 except Exception as e:
